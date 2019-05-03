@@ -9,11 +9,11 @@ export const Checkbox = function ({
       completed = validation('completed'),
     } = state;
     const checked = completed ? 'checked' : '';
-    return `<label>` +
+    return `<div><label>` +
       `<input  type="checkbox" class="base-input" ` +
       `name="${name}" novalidate="true" ` +
       `value="${state.item}" ${checked} required>` +
-      `${item}</label>`;
+      `${item}</label></div>`;
   }
 }
 
@@ -30,7 +30,9 @@ export const InputText = function ({
 }
 
 export const InputWrapper = function (content) {
-  return `<div class="line-wrapper">${content}</div>`;
+  return () => {
+    return `<div class="line-wrapper">${content}</div>`
+  };
 }
 
 export const MyForm = function ({

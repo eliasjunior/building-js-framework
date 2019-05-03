@@ -14,32 +14,43 @@ export default function FrameWork() {
       //addEvents(node, props);
       //addEvents(node.children, template.state);
       template = bindStateToTemplate(template, props, node);
-      const component = render(template);
-
-      
-      Array.from(node.children).forEach( child => {
-        console.log('child  ' , child.name, child.type)
-        if(child.name &&  child.type) {
-          console.log(`add Events to ${child.name} type=${child.type}`)
-          console.log(`add Events to ${child.name} type=${child.type}`)
-          addEvents(child, props)
+      render(template);
+      // get actual node
+      if(props.name && props.isChild) {
+        const theNode = getActualNode(node, props)
+        console.log(`add Events to ${theNode && theNode.name} type=${theNode && theNode.type} ${props.name}`)
+        if(theNode) {
+          template.node = theNode;
+          addEvents(theNode, props)
         }
-
-      })
-
-      // form > child
-
-      return component;
+      }
+      return template;
     }
   }
 }
 
+function getActualNode(node, props) {
+  if(node.name === props.name ) {
+    console.log('FOUND ', node.name, props.name)
+    return node;
+  } else {
+    let FOUND = null;
+    Array
+    .from(node.children)
+    .forEach(child =>  {
+      //console.log('child ', child.name)
+      FOUND = getActualNode(child, props)
+    })
+    return FOUND;
+  }
+}
 
-export function render(template = validation('template')) {
+
+export function render(template = validation('template'), update) {
   const { node = validation('node') } = template;
   console.log('-- RENDER -- ')
   const html = typeof template === 'function' ? template(template.state) : template;
-  if (template.state.isChild) {
+  if (template.state.isChild && !update) {
     node.insertAdjacentHTML('beforeend', html);
   } else {
     node.innerHTML = html;
@@ -52,6 +63,7 @@ function bindStateToTemplate(template, props, node) {
   Object.defineProperties(template, {
     node: {
       value: node,
+      writable: true,
     },
     state: {
       value: props,
@@ -60,7 +72,7 @@ function bindStateToTemplate(template, props, node) {
     setState: {
       value: function (props = {}) {
         template.state = { ...props };
-        render(template);
+        render(template, true);
         return template;
       }
     },

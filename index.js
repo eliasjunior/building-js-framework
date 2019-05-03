@@ -1,7 +1,8 @@
-import FrameWork, { render } from './awesome-framework';
+import FrameWork from './awesome-framework';
 import Greetings from './app/greetings';
-//import FormTemplate from './app/form-creator';
-import { Checkbox, MyForm, InputText, InputWrapper } from './awesome-framework/form-templates';
+import { MyForm } from './awesome-framework/form-templates';
+import InputComponent from './app/InputComponent';
+import TodoListComponent from './app/TodoListComponent';
 
 const { Component } = FrameWork();
 
@@ -25,42 +26,13 @@ function renderForm() {
   renderInput()
   renderTodoList();
 }
-//TODO: is global here 
-const handleInputChange = (e) => {
-  console.log('Change- ', e.target.value);
-  Text.setState({ value: e.target.value })
-}
+
 function renderInput() {
-  //console.log(getInputState())
-  const withAttributes = InputText({
-    name: 'someGuy',
-    isChild: true,
-  })
-  const Text = Component({
-    template: withAttributes,
-    props: getInputState(),
-    node: document.querySelector('.nice-form'),
-  })
-  console.log('TOO LONG', Text)
+  new InputComponent().render();
 }
 
 function renderTodoList() {
-  // Setup our template
-  const list = getTodos()
-  const todoListTemplate = () => {
-    // Loop through the todos
-    return list.reduce((prev, todo) => {
-      // Create the todo item
-      const withAttributes = Checkbox({ name: todo.item,});
-      prev += InputWrapper(withAttributes(todo));
-      return prev;
-    }, '')
-  };
-  Component({
-    template: todoListTemplate,
-    props: { isChild: true },
-    node: document.querySelector('.nice-form'),
-  })
+  new TodoListComponent().render();
 }
 
 function renderTitle() {
@@ -72,31 +44,8 @@ function renderTitle() {
   Component(options)
 }
 
-function getTodos() {
-  return [
-    {
-      item: 'Eat',
-      completed: false,
-    },
-    {
-      item: 'Take a nap',
-      completed: true,
-    },
-    {
-      item: 'Eat again',
-      completed: false,
-    }
-  ]
-}
 
-function getInputState() {
-  return {
-    required: true,
-    value: 'Avengers End Game',
-    onChange: handleInputChange,
-    isChild: true,
-  }
-}
+
 
 function modify() {
   setTimeout(() => {
