@@ -13,26 +13,33 @@ body {
 }
 .nice-form {
   margin: 1em;
-  background-color: rgb(226, 185, 96);
+  background-color: rgb(245, 244, 243);
+}
+.form-row {
+  display: flex;
+  padding-left: 1em;
+  padding-bottom: 0.5em;
+}
+.label-field {
+  padding-right: 1em;
+  font-weight: 600
 }
 
-.line-wrapper {
-  border-style: solid;
-  border-width: 0.1em;
-  border-color: rgb(255, 251, 0);
-}
-.base-input:invalid {
+.base-input {
   border-width: 0.15em;
   border-left-style: solid;
   border-left-width: 0.5em;
-  border-style: solid;
+  border-radius: 0.3em;
+  flex:1;
+}
+.base-input:invalid {
   border-color: rgb(255, 81, 0);
 }
 
 .base-input:valid {
-  border-width: 0.15em;
-  border-left-style: solid;
-  border-left-width: 0.5em;
-  border-style: solid;
-  border-color: rgb(72, 255, 0);;
+  border-color: rgb(72, 255, 0);
+}
+
+.error-message {
+  color: red;
 }
