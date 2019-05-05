@@ -2,8 +2,8 @@ import FrameWork from '../awesome-framework';
 import { InputText } from '../awesome-framework/form-templates';
 const { Component } = FrameWork();
 
-export default function InputClass() {
-  let Text = null;
+export default function InputClassComponent() {
+  let InputText = null;
   const state = {
     required: true,
     name: 'someGuy',
@@ -27,7 +27,7 @@ export default function InputClass() {
     state.value = e.target.value;
     state.validations.push(required);
     state.validations.push(onlyLetters)
-    Text.setState(state)
+    InputText.setState(state)
   }
   return {
     render() {
@@ -35,13 +35,13 @@ export default function InputClass() {
         name: 'someGuy',
         key: 'input-block-1',
       })
-      Text = Component({
+      InputText = Component({
         template: withAttributes,
         props: state,
         node: document.querySelector('.nice-form'),
         key: 'input-block-1',
       })
-      return Text;
+      return InputText;
     },
   }
 }

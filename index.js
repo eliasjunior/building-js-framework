@@ -41,28 +41,4 @@ function renderTitle() {
   }
   Component(options)
 }
-
-function modify() {
-  setTimeout(() => {
-    const outros = [
-      {
-        item: 'Eat',
-        completed: true,
-        name: 'eat',
-      },
-      {
-        item: 'Take a nap',
-        completed: true,
-        name: 'eat',
-      },
-      {
-        item: 'Eat again',
-        completed: true,
-        name: 'eat',
-      }
-    ]
-    Form.setState({ todos: outros, someGuy: 'cool name' })
-  }, 2000)
-}
-
 main()
