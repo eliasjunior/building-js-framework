@@ -1,6 +1,8 @@
 import FrameWork from '../awesome-framework';
-import { InputText } from '../awesome-framework/form-templates';
+import { InputTextTemplate } from '../awesome-framework/form-templates';
 const { Component } = FrameWork();
+
+console.log('InputTextTemplate', InputTextTemplate)
 
 export default function InputClassComponent() {
   let InputText = null;
@@ -31,7 +33,7 @@ export default function InputClassComponent() {
   }
   return {
     render() {
-      const withAttributes = InputText({
+      const withAttributes = InputTextTemplate({
         name: 'someGuy',
         key: 'input-block-1',
       })
