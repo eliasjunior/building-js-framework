@@ -1,6 +1,6 @@
 import FrameWork from '../awesome-framework';
-import { InputTextTemplate } from "../awesome-framework/templates/form-elements";
 const { Component } = FrameWork();
+import { InputTextTemplate } from "../awesome-framework/templates/form-elements";
 
 export default function InputComponent() {
   let InputText = null;
