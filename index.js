@@ -1,8 +1,8 @@
 import FrameWork from './awesome-framework';
-import Greetings from './app/greetings';
+import Greetings from "./app-example/greetings";
 import { MyForm } from './awesome-framework/form-templates';
-import InputComponent from './app/InputComponent';
-import TodoListComponent from './app/TodoListComponent';
+import InputComponent from "./app-example/InputComponent";
+import TodoListComponent from "./app-example/TodoListComponent";
 
 const { Component } = FrameWork();
 
@@ -15,10 +15,10 @@ function renderForm() {
   // add state to the form, combining template + data
   Component({
     template: MyForm,
-    props: { name: 'thanosForm' },
-    node: document.querySelector('.form-content'),
-    key: 'nice-form',
-  })
+    props: { name: "MyForm" },
+    node: document.querySelector(".form-content"),
+    key: "nice-form",
+  });
 
   renderInput()
   renderTodoList();
