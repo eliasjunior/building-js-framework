@@ -1,51 +1,47 @@
 import FrameWork from '../awesome-framework';
-import { InputTextTemplate } from '../awesome-framework/form-templates';
+import { InputTextTemplate } from "../awesome-framework/templates/form-elements";
 const { Component } = FrameWork();
 
-console.log('InputTextTemplate', InputTextTemplate)
-
-export default function InputClassComponent() {
+export default function InputComponent() {
   let InputText = null;
   const state = {
     required: true,
-    name: 'someGuy',
-    value: 'Avengers End Game',
+    name: "someGuy",
+    value: "Avengers End Game",
     isChild: true,
     onChange: handleInputChange,
     validations: [],
-  }
+  };
   function handleInputChange(e) {
     const required = {
-      isInvalid: e.target.value === '',
-      message: 'This is required pal'
-    }
+      isInvalid: e.target.value === "",
+      message: "field is required",
+    };
     const onlyLetters = {
       isInvalid: !onlyLetter(e.target.value),
-      message: 'only letters loco'
-    }
-    console.log(onlyLetters)
-    console.log(required)
+      message: "only letters",
+    };
     // simulating state changing, setState is not done yet.
     state.value = e.target.value;
     state.validations.push(required);
-    state.validations.push(onlyLetters)
-    InputText.setState(state)
+    state.validations.push(onlyLetters);
+    InputText.setState(state);
   }
   return {
     render() {
       const withAttributes = InputTextTemplate({
-        name: 'someGuy',
-        key: 'input-block-1',
-      })
+        name: "name",
+        key: "input-block-1",
+      });
       InputText = Component({
         template: withAttributes,
         props: state,
-        node: document.querySelector('.nice-form'),
-        key: 'input-block-1',
-      })
+        node: document.querySelector(".nice-form"),
+        key: "input-block-1",
+      });
       return InputText;
     },
-  }
+  };
 }
 function onlyLetter(text) {
   var letters = /^[A-Za-z\s]+$/;

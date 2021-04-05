@@ -1,22 +1,22 @@
 import { validation } from './helper';
 
-export default function FrameWork() {
+export default function AwesomeFrameWork() {
   return {
     Component: function ({
-      template = validation('template'),
+      template = validation("template"),
       props = {},
-      node = validation('node'),
-      key = validation('key'),
+      node = validation("node"),
+      key = validation("key"),
     }) {
       if (typeof template !== "function") {
-        throw Error('template must be a function or a string')
+        throw Error("template must be a function or a string");
       }
 
-      template = bindStateToTemplate({template, props, node, key});
+      template = bindStateToTemplate({ template, props, node, key });
       render(template);
       return template;
-    }
-  }
+    },
+  };
 }
 
 function getActualNode(node, props, key) {
@@ -24,12 +24,9 @@ function getActualNode(node, props, key) {
     return node;
   } else {
     let actualNode = null;
-    Array
-      .from(node.children)
-      .forEach(child => {
-        //console.log('child ', child.name)
-        actualNode = getActualNode(child, props, key)
-      })
+    Array.from(node.children).forEach((child) => {
+      actualNode = getActualNode(child, props, key);
+    });
     return actualNode;
   }
 }
